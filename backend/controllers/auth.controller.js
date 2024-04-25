@@ -45,7 +45,10 @@ const signup = async (req, res) => {
 }
 
 const logout = (req, res) => {
-
+    res.cookie("token","",{ maxAge:0 })
+    res.status(200).json({
+        message:"Log out Successfully"
+    })
 }
 
 
