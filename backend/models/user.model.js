@@ -45,8 +45,9 @@ UserSchema.pre("save", function(next) {
 })
 
 // static function to match the password and generate tokens while login
-UserSchema.static("matchPasswordAndGenerateToken",async function(email,password){
+UserSchema.static("matchPasswordAndGenerateToken",async function(email,password,res){
     const user = await this.findOne({email})
+
     if(!user){
         throw new Error('User not found')
     }
@@ -59,7 +60,15 @@ UserSchema.static("matchPasswordAndGenerateToken",async function(email,password)
         throw new Error('Password not match')
     }
     const token = generateToken(user)
-    return token
+    res.cookie("token", token, {
+        maxAge: 15 * 24 * 60 * 60 * 1000, 
+        httpOnly: true, 
+        sameSite: "strict"
+        // secure: process.env.NODE_ENV !== "development",
+    });
+    user.password = undefined
+    user.salt= undefined
+    return user
 })
 
 const User = mongoose.model("User", UserSchema);

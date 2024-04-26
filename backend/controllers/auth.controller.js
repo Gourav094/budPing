@@ -4,15 +4,11 @@ const login = async (req, res) => {
     const {email,password} = req.body
 
     try{
-        token = await User.matchPasswordAndGenerateToken(email,password)
-        res.cookie("token", token, {
-            maxAge: 15 * 24 * 60 * 60 * 1000, 
-            httpOnly: true, 
-            sameSite: "strict"
-            // secure: process.env.NODE_ENV !== "development",
-        });
+        const userData = await User.matchPasswordAndGenerateToken(email,password,res)
+        
         res.status(200).json({
-            message:"Successfully logged in"
+            message:"Successfully logged in",
+            userData
         })
     }
     catch(error){
