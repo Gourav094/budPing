@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import headerLogo from "../assets/quickChat.jpg"
 const Header = () => {
   return (
@@ -7,8 +8,8 @@ const Header = () => {
             <ul className="flex items-center gap-6 text-lg font-normal">
                 <li className="cursor-pointer hover:text-violet-600 py-1 ">Features</li>
                 <li className="cursor-pointer hover:text-violet-600 py-1 ">Privacy</li>
-                <li className="cursor-pointer hover:text-violet-600 py-1 ">Login</li>
-                <li className="cursor-pointer hover:text-violet-600 py-1 ">Sign up</li>
+                <Link to={'/login'}><li className="cursor-pointer hover:text-violet-600 py-1 ">Login</li></Link>
+                <Link to={'/signup'}><li className="cursor-pointer hover:text-violet-600 py-1 ">Sign up</li></Link>
             </ul>
         </div>
     </div>

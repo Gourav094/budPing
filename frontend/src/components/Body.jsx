@@ -7,10 +7,11 @@ import msg5 from "../assets/message5.png"
 import image1 from "../assets/image-bg1.png"
 import heroImage from "../assets/home_message.png"
 import heroImage2 from "../assets/home_message2.png"
+import { Link } from "react-router-dom";
 
 const Body = () => {
 	return (
-    <div className="bg-violet-100 h-fit">
+    <div className="bg-violet-100 h-fit text-black">
         <Header/>
         <div className="mx-10 pb-10">
             <div className="bg-[#3f4654] flex bg-opacity-90 my-8 py-4 rounded-lg ">
@@ -18,7 +19,7 @@ const Body = () => {
                     <div className="text-white w-1/3">
                         <h1 className="text-6xl font-medium pb-10">Message Privately</h1>
                         <p className="text-lg">Simple, reliable, private messaging for free*, available all over the world.</p>
-                        <button className="mt-10 py-1 px-4 rounded-full hover:opacity-80 bg-violet-300 text-black font-medium text-lg">Get Started</button>
+                        <Link to={"/signup"}><button className="mt-10 py-1 px-4 rounded-full hover:opacity-80 bg-violet-300 text-black font-medium text-lg">Get Started</button></Link>
                     </div>
                     <div className="flex flex-col gap-10">
                         <div className="">

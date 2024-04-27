@@ -5,6 +5,7 @@ const authRouter = require('./routes/auth.routes')
 const cookieParser = require('cookie-parser')
 const messageRouter = require('./routes/message.route')
 const cors = require("cors")
+const userRouter = require('./routes/users.router')
 
 require('dotenv').config()
 
@@ -23,6 +24,8 @@ app.use(cookieParser())
 app.use('/user',authRouter)
 
 app.use('/message',messageRouter)
+
+app.use('/users',userRouter)
 
 app.listen(PORT,() => {
     console.log(`server running on http://localhost:${PORT}`)

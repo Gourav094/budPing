@@ -5,6 +5,7 @@ import axios from "axios";
 import {toast,Toaster} from "react-hot-toast"
 import Loader from "./Loader"
 const Signup = () => {
+	const [showPassword,setShowPassword] = useState(true)
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
 		fullName: "",
@@ -109,11 +110,22 @@ const Signup = () => {
 								onChange={handleInputChange}
 								value={formData.password}
 								name="password"
-								type="password"
+								type = {showPassword ? "text" : "password"}
 								required
 								className="outline-none px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 							/>
 						</div>
+						<div className="mt-2">
+                            <label className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    checked={showPassword}
+                                    onChange={(e) => setShowPassword(e.target.checked)}
+                                    className="mr-2"
+                                />
+                                <span className="text-sm text-gray-700 select-none">Show password</span>
+                            </label>
+                        </div>
 					</div>
 
 					<div>
