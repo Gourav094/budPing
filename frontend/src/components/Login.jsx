@@ -4,8 +4,11 @@ import { useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 
 const Login = () => {
+    const dispatch = useDispatch()
     const [showPassword,setShowPassword] = useState(true)
     const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState({
@@ -35,8 +38,9 @@ const Login = () => {
             if(response.data){
                 localStorage.setItem("user",JSON.stringify(response.data.user))
                 localStorage.setItem("token",JSON.stringify(response.data.token))
+                dispatch(addUser(response.data.user))
                 toast.success("Successfully logged in")
-                navigate("/")
+                navigate("/chat")
             }   
         }
         catch(error){

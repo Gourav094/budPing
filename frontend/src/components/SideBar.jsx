@@ -1,33 +1,22 @@
 import { IoSearchOutline } from "react-icons/io5";
+import useGetConversation from "../utils/useGetConversation";
+import Conversation from "./Conversation";
+import { useSelector} from "react-redux"
+
 const SideBar = () => {
+    const theme = useSelector(state => state.user.theme)
+    
+    const {loading,conversation} = useGetConversation()
+
+    
   return (
     <div className='p-4 h-screen rounded-lg shadow-lg'>
-        <div className='flex items-center w-full rounded-lg mb-4' data-theme="nord">
+        <div className='flex items-center w-full rounded-lg mb-4' data-theme={theme === 'dark' ? 'dim':'nord'}>
             <span className='px-3'><IoSearchOutline /></span>
             <input className='outline-none py-2 px-1 bg-transparent' type='text' placeholder='Search'/>
         </div>
         <div>
-            <div className='p-2 flex items-center gap-4 hover:bg-gray-200 rounded-xl cursor-pointer'>
-                <p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center"> M </p>
-                <div>
-                    <h3 className="text-g font-medium ">Gourav garg </h3>
-                    <p className="text-xs text-gray-500">Hii this is new message</p>
-                </div>
-            </div>
-            <div className='p-2 flex items-center gap-4 rounded cursor-pointer hover:bg-gray-200'>
-                <p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center"> M </p>
-                <div>
-                    <h3 className="text-g font-medium ">Gourav garg </h3>
-                    <p className="text-xs text-gray-500">Hii this is new message</p>
-                </div>
-            </div>
-            <div className='p-2 flex items-center gap-4 rounded cursor-pointer hover:bg-gray-200'>
-                <p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center"> M </p>
-                <div>
-                    <h3 className="text-g font-medium ">Gourav garg </h3>
-                    <p className="text-xs text-gray-500">Hii this is new message</p>
-                </div>
-            </div>
+            <Conversation conversation = {conversation} loading = {loading}/>
         </div>
     </div>
   )
