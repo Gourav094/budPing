@@ -37,7 +37,7 @@ const MessageContainer = () => {
 
             <div className="mx-4 flex items-center  rounded-lg px-4" data-theme="nord">
                 <button className="inset-y-0 end-0"><MdOutlineAttachFile /></button>
-                <input className="text-gray-50 py-3 px-2 w-full outline-none bg-transparent"  placeholder="Send a message" type="text"/>
+                <input className=" py-3 px-2 w-full outline-none bg-transparent"  placeholder="Send a message" type="text"/>
                 <button className="inset-y-0 end-0"><IoSend/></button>
             </div>
         </div>

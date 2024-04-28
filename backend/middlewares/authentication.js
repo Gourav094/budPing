@@ -3,7 +3,8 @@ const { verifyToken } = require("../services/token")
 
 const checkUserLogin = async (req,res,next) => {
     try{
-        const token = req.cookies.token;
+        // const token = req.cookies.token;
+        const token = req.headers.authorization
         if(!token){
             return res.status(401).json({ error: "Unauthorized - No Token Provided" });
         }

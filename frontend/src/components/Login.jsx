@@ -33,7 +33,8 @@ const Login = () => {
             );
             console.log(response)
             if(response.data){
-                localStorage.setItem("user",JSON.stringify(response.data.userData))
+                localStorage.setItem("user",JSON.stringify(response.data.user))
+                localStorage.setItem("token",JSON.stringify(response.data.token))
                 toast.success("Successfully logged in")
                 navigate("/")
             }   
@@ -52,7 +53,7 @@ const Login = () => {
 
   return (
     
-    <div className="flex min-h-full flex-col justify-center px-6 py-20 lg:px-8">
+    <div className="flex min-h-full flex-col justify-center px-6 py-20 lg:px-8 h-screen" data-theme="garden">
         <Toaster/>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img className="mx-auto h-14 w-auto" src={Logo} alt="QuickChat"/>

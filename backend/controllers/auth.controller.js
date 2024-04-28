@@ -4,12 +4,14 @@ const login = async (req, res) => {
     const {email,password} = req.body
 
     try{
-        const userData = await User.matchPasswordAndGenerateToken(email,password,res)
+        const{ user, token } = await User.matchPasswordAndGenerateToken(email, password, res)
         
         res.status(200).json({
             message:"Successfully logged in",
-            userData
+            user,
+            token
         })
+        
     }
     catch(error){
         console.log(error)
@@ -26,7 +28,7 @@ const signup = async (req, res) => {
         const user = await User.create({
             fullName, email, password, profileImg
         })
-        
+
         res.status(200).json({
             message:"successfully created account",
             data: user

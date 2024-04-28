@@ -59,16 +59,11 @@ UserSchema.static("matchPasswordAndGenerateToken",async function(email,password,
     if(user.password !== hashedPassword){
         throw new Error('Password not match')
     }
-    const token = generateToken(user)
-    res.cookie("token", token, {
-        maxAge: 15 * 24 * 60 * 60 * 1000, 
-        httpOnly: true, 
-        sameSite: "strict"
-        // secure: process.env.NODE_ENV !== "development",
-    });
+    const token = generateToken(user,res)
+
     user.password = undefined
     user.salt= undefined
-    return user
+    return {user,token}
 })
 
 const User = mongoose.model("User", UserSchema);
