@@ -16,7 +16,6 @@ const useConversation = () => {
 						Authorization:JSON.parse(localStorage.getItem('token'))
 					}
                 });
-				console.log(response);
 				if (response.error) {
 					throw new Error(response.error);
 				}

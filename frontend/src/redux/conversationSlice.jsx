@@ -4,15 +4,23 @@ const conversationSlice = new createSlice({
     name:"conversation",
     initialState:{
         selectedConversation:null,
-        users:[]
+        messages:[],
     },
     reducers:{
         selectConversation: (state,action) => {
             state.selectedConversation = action.payload
-        }
+        },  
+        addNewMessage: (state, action) => {
+            // state.messages = [...state.messages, action.payload]
+            state.messages.push(action.payload) 
+        },
+        setMessages:(state,action) => {
+            console.log("in the redux")
+            state.messages = action.payload
+        } 
     }
 })
 
-export const {selectConversation} = conversationSlice.actions
+export const {selectConversation,addNewMessage,setMessages} = conversationSlice.actions
 
 export default conversationSlice.reducer

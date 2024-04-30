@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit"
 const userSlice = createSlice({
     name:"user",
     initialState:{
-        theme:"light",
+        theme:"dark",
         userData: JSON.parse(localStorage.getItem('user')) || null
     },
     reducers:{

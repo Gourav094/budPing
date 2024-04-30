@@ -1,26 +1,36 @@
+import { useEffect, useRef } from "react";
+import useGetMessages from "../utils/useGetMessages";
+import Message from "./Message";
+import MessageShimmer from "./Shimmer";
 
+const Messages = () => {
+	const { loading, messages } = useGetMessages();
+	console.log("messaagesss",messages);
+	const lastMessageRef = useRef();
 
-const Messages = ({chatDirection,message}) => {
-  return (
-    <div className='py-1'>
-        <div className='chat chat-start'>
-            <div className='chat-image avatar'>
-              <p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center"> M </p>
-            </div>
-            <div className='chat-bubble '>
-                Hii! what's up?
-            </div>
-        </div>
-        <div className={`chat ${chatDirection}`}>
-            <div className='chat-image avatar'>
-              <p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center"> M </p>
-            </div>
-            <div className='chat-bubble '>
-                {message}
-            </div>
-        </div>
-    </div>
-  )
-}
+	useEffect(() => {
+		setTimeout(() => {
+			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+		}, 100);
+	}, [messages]);
 
-export default Messages
+	return (
+		<div className="px-4 py-1 h-[550px] flex-1 overflow-auto">
+			{loading && (
+				<div className="flex flex-col gap-10 py-5">
+					<MessageShimmer />
+					<MessageShimmer />
+				</div>
+			)}
+			{!loading &&
+				messages.length > 0 &&
+				messages.map((message) => (
+					<div key={message._id} ref={lastMessageRef}>
+						<Message message={message} />
+					</div>
+				))}
+		</div>
+	);
+};
+
+export default Messages;
