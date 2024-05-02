@@ -17,14 +17,19 @@ import { MdCancel } from "react-icons/md";
 		const dispatch = useDispatch()
 
 		useEffect(() => {
-			socket.on("message received",(message) => {
-				if(!selectedChatCompare || selectedChatCompare._id === message.receiverId){
-					//give notificaiotn
-				}
-				else{
+			function handleMessageReceived(message){
+				if(!selectedChatCompare || selectedChatCompare._id !== message.receiverId){
+					console.log("dispatching....")
 					dispatch(addNewMessage(message))
 				}
-			})
+				else{
+					//give notificaiotn
+				}
+			}
+			socket.on("message received",handleMessageReceived)
+			return () => {
+				socket.off("message received", handleMessageReceived);
+			};
 		})
 		
 		return !selectedConversation ? (

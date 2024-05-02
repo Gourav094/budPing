@@ -16,11 +16,10 @@ const io = new Server(httpServer,{
 io.on("connection",(socket) => {
     console.log("A user connected",socket.id)
 
-    // create a room for user where get the data from frontend
     socket.on("setup",(userData) => {
-        socket.join(userData._id)   // room joined with itself
+        socket.join(userData._id)   
         console.log("User joined room in itself",userData._id)
-        socket.emit('connected')    // emit event to frontend
+        socket.emit('connected')    
     })
 
     socket.on("join chat",(room) => {

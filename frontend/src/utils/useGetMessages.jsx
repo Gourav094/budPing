@@ -6,7 +6,7 @@ import { useSocket } from '../context/SocketContext'
 
 const useGetMessages = () => {
     const [loading,setLoading] = useState(false)
-    const { socket} = useSocket();
+    const { socket,setSelectedChatCompare} = useSocket();
     const {selectedConversation,messages} = useSelector(state => state.conversation)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -38,6 +38,7 @@ const useGetMessages = () => {
 
         if(selectedConversation){
             getMessages()
+            setSelectedChatCompare(selectedConversation._id)
         }
     },[selectedConversation,socket,dispatch])
 
