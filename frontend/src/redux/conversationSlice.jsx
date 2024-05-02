@@ -16,10 +16,13 @@ const conversationSlice = new createSlice({
         },
         setMessages:(state,action) => {
             state.messages = action.payload
-        } 
+        },
+        clearMessages: (state) => {
+            state.messages = [];
+        },
     }
 })
 
-export const {selectConversation,addNewMessage,setMessages} = conversationSlice.actions
+export const {selectConversation,addNewMessage,setMessages,clearMessages} = conversationSlice.actions
 
 export default conversationSlice.reducer

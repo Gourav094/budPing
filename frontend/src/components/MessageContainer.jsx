@@ -15,7 +15,7 @@ import { MdCancel } from "react-icons/md";
 		);
 		const {theme,userData} = useSelector((state) => state.user);
 		const dispatch = useDispatch()
-
+		
 		useEffect(() => {
 			function handleMessageReceived(message){
 				if(!selectedChatCompare || selectedChatCompare._id !== message.receiverId){

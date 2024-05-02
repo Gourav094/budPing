@@ -3,14 +3,14 @@ import { extractTime } from "../utils/constant"
 
 const Messages = ({message}) => {
   const user = useSelector(state => state?.user?.userData)
-  const selectedConversation = useSelector(state => state?.conversation?.selectConversation)
+  const selectedConversation = useSelector(state => state?.conversation?.selectedConversation)
   const myMessage = user?._id === message?.senderId
   const formattedTime = extractTime(message?.createdAt);
   const chatDirection = myMessage ? "chat-end" : "chat-start"
   const bubbleBgColor = myMessage ? "bg-blue-500" : "";
   // const shakeClass = message.shouldShake ? "shake" : "";
   const profilePic = myMessage ? user?.fullName[0].toUpperCase() : selectedConversation?.fullName[0].toUpperCase()
-
+  console.log(selectedConversation)
   return (
     <div className='py-1'>
         <div className={`chat ${chatDirection}`}>
