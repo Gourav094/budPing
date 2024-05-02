@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { useState } from "react";
 import axios from "axios";
-import {toast,Toaster} from "react-hot-toast"
+import {toast} from "react-hot-toast"
 import Loader from "./Loader"
 const Signup = () => {
 	const [showPassword,setShowPassword] = useState(true)
@@ -49,7 +49,7 @@ const Signup = () => {
 
 	return (
         <div className="flex min-h-full flex-col justify-center px-6 py-20 lg:px-8" data-theme="light">
-            <Toaster/>    
+   
 			<div className="sm:mx-auto sm:w-full sm:max-w-sm">
 				<img
 					className="mx-auto h-14 w-auto"

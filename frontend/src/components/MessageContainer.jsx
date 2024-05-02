@@ -4,8 +4,9 @@
 	import MessageInput from "./MessageInput";
 	import Messages from "./Messages";
 	import { useEffect } from "react";
-	import { addNewMessage } from "../redux/conversationSlice";
+	import { addNewMessage, selectConversation } from "../redux/conversationSlice";
 	import { useSocket } from "../context/SocketContext";
+import { MdCancel } from "react-icons/md";
 
 	const MessageContainer = () => {
 		const { socket, selectedChatCompare} = useSocket();
@@ -16,14 +17,11 @@
 		const dispatch = useDispatch()
 
 		useEffect(() => {
-			console.log("in this block will be dispatching messages")
 			socket.on("message received",(message) => {
-				console.log("bhidduuu checking re", selectedChatCompare)
 				if(!selectedChatCompare || selectedChatCompare._id === message.receiverId){
 					//give notificaiotn
 				}
 				else{
-					console.log("dispatched messages",message)
 					dispatch(addNewMessage(message))
 				}
 			})
@@ -40,20 +38,22 @@
 				</span>
 			</div>
 		) : (
-			<div className="py-2 max-h-screen">
-				<div
-					className="py-2 px-4 rounded flex gap-4 items-center"
-					data-theme={theme === "dark" ? "dim" : "nord"}
-				>
-					<p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center">
-						{" "}
-						{selectedConversation?.fullName[0].toUpperCase()}{" "}
-					</p>
-					<div>
-						<h3 className=" font-medium ">
-							{selectedConversation?.fullName}{" "}
-						</h3>
-						<p className="text-xs text-green-500">online</p>
+			<div className="py-2 max-h-screen flex flex-col justify-between">
+				<div className="py-2 px-4 rounded flex gap-4 items-center justify-between" data-theme={theme === "dark" ? "dim" : "nord"}>
+					<div className="flex items-center gap-4">
+						<p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center">
+							{" "}
+							{selectedConversation?.fullName[0].toUpperCase()}{" "}
+						</p>
+						<div>
+							<h3 className=" font-medium ">
+								{selectedConversation?.fullName}{" "}
+							</h3>
+							<p className="text-xs text-green-500">online</p>
+						</div>
+					</div>
+					<div className="text-lg px-2 cursor-pointer" onClick={() => dispatch(selectConversation(null))}>
+						<MdCancel/>
 					</div>
 				</div>	
 

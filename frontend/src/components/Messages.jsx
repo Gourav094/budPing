@@ -12,9 +12,8 @@ const Messages = ({socket}) => {
 			lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
 		}, 100);
 	}, [messages]);
-console.log(messages)
 	return (
-		<div className="px-4 py-1 h-[550px] flex-1 overflow-auto">
+		<div className="px-4 py-1 min-h-[570px] flex-1 overflow-auto">
 			{loading && (
 				<div className="flex flex-col gap-10 py-5">
 					<MessageShimmer />

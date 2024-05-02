@@ -13,15 +13,12 @@ export const SocketProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (userData) {
-			console.log("socket initialised: ", socket);
 			socket.emit("setup", userData);
 			socket.on("connected", () => {
-				console.log("Connected to server", socket.id);
 				setSocketConnected(true);
 			});
 			socket.on("disconnect", () => {
-				console.log("Disconnected from server");
-				setSocketConnected(false); // Set connection status to false
+				setSocketConnected(false); 
 			});
 		}
 	}, [socket, userData]);

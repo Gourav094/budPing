@@ -3,7 +3,7 @@ import Logo from "../assets/logo.png"
 import { useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userSlice";
 
@@ -56,7 +56,6 @@ const Login = () => {
   return (
     
     <div className="flex min-h-full flex-col justify-center px-6 py-20 lg:px-8 h-screen" data-theme="light">
-        <Toaster/>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img className="mx-auto h-14 w-auto" src={Logo} alt="QuickChat"/>
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>

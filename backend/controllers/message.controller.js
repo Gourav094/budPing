@@ -37,7 +37,6 @@ async function addNewMessage(req,res){
                 participants:[senderId,receiverId],
             })
         }
-        console.log("conversation find")
         
         const newMessage = new Message({
             senderId,

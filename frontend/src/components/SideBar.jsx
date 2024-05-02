@@ -8,9 +8,8 @@ const SideBar = () => {
     
     const {loading,conversation} = useGetConversation()
 
-    
   return (
-    <div className='p-4 max-h-screen rounded-lg shadow-lg overflow-auto'>
+    <div className='p-4 max-h-screen rounded-lg shadow-lg overflow-auto w-full'>
         <div className='flex items-center w-full rounded-lg mb-4' data-theme={theme === 'dark' ? 'dim':'nord'}>
             <span className='px-3'><IoSearchOutline /></span>
             <input className='outline-none py-2 px-1 bg-transparent' type='text' placeholder='Search'/>
