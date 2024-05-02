@@ -2,12 +2,13 @@ import  { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import axios from "axios"
 import {setMessages} from "../redux/conversationSlice"
+import { useSocket } from '../context/SocketContext'
 
 const useGetMessages = () => {
     const [loading,setLoading] = useState(false)
+    const { socket,setSelectedChatCompare} = useSocket();
     const {selectedConversation,messages} = useSelector(state => state.conversation)
     const dispatch = useDispatch()
-    console.log(messages)
     useEffect(() => {
             const getMessages = async() => {
             try{
@@ -22,10 +23,11 @@ const useGetMessages = () => {
                         },
                     }
                 );
-                console.log(response?.data)
                 if(response.data){
                     dispatch(setMessages(response?.data))
                 }
+                console.log("User joined room in the socket: ",selectedConversation._id, socket.id)
+                socket.emit("join chat",selectedConversation._id)
             }catch(error){
                 console.log("getting error while fetching messages",error)
             }
@@ -36,6 +38,7 @@ const useGetMessages = () => {
 
         if(selectedConversation){
             getMessages()
+            setSelectedChatCompare(selectedConversation)
         }
     },[selectedConversation])
 

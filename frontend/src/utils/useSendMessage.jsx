@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast"
 import axios from "axios"
 import {  addNewMessage } from "../redux/conversationSlice";
+import { useSocket } from "../context/SocketContext";
 
 const useSendMessage = () => {
     const selectedConversation = useSelector(state => state.conversation.selectedConversation)
     const dispatch = useDispatch()
     const [loading,setLoading] = useState(false)
+    const { socket } = useSocket();
 
     const sendMessage = async(message) => {
         setLoading(true)
@@ -19,8 +21,14 @@ const useSendMessage = () => {
                     Authorization: JSON.parse(localStorage.getItem('token'))
                 }
             });
+            console.log(response)
+            const sendData = {
+                message: response?.data?.message,
+                chatId: response?.data?.message?.receiverId
+            }
+            console.log("sending mesage to socket",sendData)
+            socket.emit("new message",sendData)
             if(response.data){
-                console.log(response.data)
                 dispatch(addNewMessage(response?.data?.message))
             }
         }

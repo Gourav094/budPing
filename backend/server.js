@@ -1,5 +1,5 @@
 const express = require('express')
-const app = express()
+const {app,httpServer} = require("./socket")
 const mongoose = require('mongoose')
 const authRouter = require('./routes/auth.routes')
 const cookieParser = require('cookie-parser')
@@ -30,6 +30,6 @@ app.use('/message',messageRouter)
 
 app.use('/users',userRouter)
 
-app.listen(PORT,() => {
+httpServer.listen(PORT,() => {
     console.log(`server running on http://localhost:${PORT}`)
 })

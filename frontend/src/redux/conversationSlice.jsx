@@ -15,7 +15,6 @@ const conversationSlice = new createSlice({
             state.messages.push(action.payload) 
         },
         setMessages:(state,action) => {
-            console.log("in the redux")
             state.messages = action.payload
         } 
     }

@@ -31,7 +31,6 @@ const Signup = () => {
                 "http://localhost:3000/user/signup",
                 formData
             );
-            console.log(response)
             if(response.data){
                 toast.success("Successfully created account")
                 navigate("/login")

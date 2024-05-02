@@ -2,12 +2,11 @@ import { useSelector } from "react-redux"
 import { extractTime } from "../utils/constant"
 
 const Messages = ({message}) => {
-  const user = useSelector(state => state.user.userData)
-  const selectedConversation = useSelector(state => state.conversation.selectConversation)
-  const myMessage = user._id === message.senderId
-  const formattedTime = extractTime(message.createdAt);
+  const user = useSelector(state => state?.user?.userData)
+  const selectedConversation = useSelector(state => state?.conversation?.selectConversation)
+  const myMessage = user?._id === message?.senderId
+  const formattedTime = extractTime(message?.createdAt);
   const chatDirection = myMessage ? "chat-end" : "chat-start"
-console.log(message.message)
   const bubbleBgColor = myMessage ? "bg-blue-500" : "";
   // const shakeClass = message.shouldShake ? "shake" : "";
   const profilePic = myMessage ? user?.fullName[0].toUpperCase() : selectedConversation?.fullName[0].toUpperCase()

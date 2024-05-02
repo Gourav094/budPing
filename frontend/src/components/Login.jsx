@@ -34,7 +34,6 @@ const Login = () => {
                 "http://localhost:3000/user/login",
                 formData
             );
-            console.log(response)
             if(response.data){
                 localStorage.setItem("user",JSON.stringify(response.data.user))
                 localStorage.setItem("token",JSON.stringify(response.data.token))
@@ -53,7 +52,6 @@ const Login = () => {
             setLoading(false)
         }
 	};  
-    console.log(showPassword)
 
   return (
     

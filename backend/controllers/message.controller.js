@@ -44,7 +44,6 @@ async function addNewMessage(req,res){
             receiverId,
             message
         })
-        console.log(conversation)
         if (newMessage) {
 			conversation.messages.push(newMessage._id);
 		}

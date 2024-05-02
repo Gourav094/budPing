@@ -13,7 +13,6 @@ const MessageInput = () => {
         if(inputMessage === ""){
             return
         }        
-		console.log("sending message")
         await sendMessage(inputMessage)
         setInputMessage("")
 	}
