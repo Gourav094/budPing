@@ -12,8 +12,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={appStore}>
     <SocketProvider>
         <App />
-    </SocketProvider>,
+    </SocketProvider>
     </Provider>
     <Toaster />
-  </React.StrictMode>,
+  </React.StrictMode>
 )

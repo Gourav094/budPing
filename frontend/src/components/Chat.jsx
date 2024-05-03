@@ -8,8 +8,6 @@ const Chat = () => {
 
   return (
     <div className='grid grid-cols-8 max-h-screen ' data-theme = {theme}>
-      {/* <div className="top-0 left-0"> */}
-        {/* </div> */}
         <div className='col-span-2 border-r border-gray-400 flex'>
             <SideMenu/>
             <SideBar/>

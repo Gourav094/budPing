@@ -6,7 +6,7 @@
 	import { useEffect } from "react";
 	import { addNewMessage, selectConversation } from "../redux/conversationSlice";
 	import { useSocket } from "../context/SocketContext";
-import { MdCancel } from "react-icons/md";
+	import { MdCancel } from "react-icons/md";
 
 	const MessageContainer = () => {
 		const { socket, selectedChatCompare} = useSocket();

@@ -2,15 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const useGetConversation = () => {
-	const [allConversation, setAllConversation] = useState([]);
-	const [load, setLoad] = useState(false);
+const useGetActiveConversation = () => {
+	const [conversation, setConversation] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		const getAllConversation = async() => {
-			setLoad(true);
+		const getConversation = async() => {
+			setLoading(true);
 			try {
-				const response =await axios.get("http://localhost:3000/users",{
+				const response =await axios.get("http://localhost:3000/users/active",{
 					withCredentials:true,
 					headers:{
 						Authorization:JSON.parse(localStorage.getItem('token'))
@@ -20,19 +20,19 @@ const useGetConversation = () => {
 				if (response.error) {
 					throw new Error(response.error);
 				}
-				setAllConversation(response.data.users);
+				setConversation(response.data.users);
 			} catch (error) {
 				console.log(error);
 				toast.error(error.message);
 			} finally {
-				setLoad(false);
+				setLoading(false);
 			}
 		};
 
-        getAllConversation()
+        getConversation()
 	}, []);
 
-	return {load,allConversation};
+	return {loading,conversation};
 };
 
-export default useGetConversation;
+export default useGetActiveConversation;

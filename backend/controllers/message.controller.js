@@ -10,7 +10,6 @@ async function getMessage(req,res){
         }).populate("messages")
         
         const messages = conversation?.messages
-        console.log(messages)
         res.status(200).json(messages)  
     }
     catch(err){

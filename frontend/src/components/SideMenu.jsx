@@ -42,9 +42,12 @@ const SideMenu = () => {
 			<div className="flex flex-col items-center gap-3">
                 <span className="text-2xl hover:text-blue-500 cursor-pointer" onClick={handleTheme}><MdOutlineColorLens /></span>
                 <span className="text-2xl hover:text-blue-500 cursor-pointer" onClick={handleLogout}><IoLogOutOutline /></span>
-				<p className="h-8 w-8 text-white bg-blue-500 rounded-full flex items-center justify-center cursor-pointer">
-					{userData?.fullName[0].toUpperCase()}
-				</p>
+                <div>
+                    <p className="h-8 w-8 text-white bg-blue-500 rounded-full flex items-center justify-center cursor-pointer" >
+                        {userData?.fullName[0].toUpperCase()}
+                    </p>
+                        
+                </div>
 			</div>
 		</div>
 	);
