@@ -23,8 +23,7 @@ const useGetMessages = () => {
                         },
                     }
                 );  
-                console.log(selectedConversation._id)
-                console.log(response.data)
+                
                 if(response.data?.length !== 0){
                     dispatch(setMessages(response?.data))
                 }
