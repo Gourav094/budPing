@@ -5,6 +5,7 @@ const conversationSlice = new createSlice({
     initialState:{
         selectedConversation:null,
         messages:[],
+        activeConversation:[]
     },
     reducers:{
         selectConversation: (state,action) => {
@@ -20,9 +21,16 @@ const conversationSlice = new createSlice({
         clearMessages: (state) => {
             state.messages = [];
         },
+        addActiveConversation:(state,action) => {
+            state.activeConversation = action.payload
+        },
+        removeActiveConversation:(state,action) =>{
+            state.activeConversation = state.activeConversation.filter(
+                (user) => user._id !== action.payload);
+        }
     }
 })
 
-export const {selectConversation,addNewMessage,setMessages,clearMessages} = conversationSlice.actions
+export const {selectConversation,addNewMessage,setMessages,clearMessages,addActiveConversation,removeActiveConversation} = conversationSlice.actions
 
 export default conversationSlice.reducer

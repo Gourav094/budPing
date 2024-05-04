@@ -7,7 +7,6 @@ const AllConversation = ({ load,allConversation, showAllUsers, setShowAllUsers})
 	const selectedConversation = useSelector(state => state.conversation?.selectedConversation);
 	
 	const handleSelectUser = (user) => {
-		console.log(user)
 		dispatch(selectConversation(user))
 		setShowAllUsers(!showAllUsers)
 	}

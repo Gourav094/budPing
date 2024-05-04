@@ -1,7 +1,7 @@
 import { MdCancel } from "react-icons/md";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
-import {  clearMessages, selectConversation } from "../redux/conversationSlice";
+import {  clearMessages, removeActiveConversation, selectConversation } from "../redux/conversationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -18,6 +18,10 @@ const MessageHeader = () => {
 	const dispatch = useDispatch()
 
 	const handleDeleteMessages = async () => {
+		const confirmed = window.confirm("Are you sure you want to delete this chat? This action cannot be undone.");
+		if(!confirmed){
+			return
+		}
 		try{
 			const response = await axios.delete(`http://localhost:3000/message/${selectedConversation._id}`,{
 				withCredentials:true,
@@ -28,12 +32,13 @@ const MessageHeader = () => {
 			console.log(response)
 			if(response.data){
 				dispatch(clearMessages())
+				dispatch(removeActiveConversation(selectedConversation._id))
 				toast.success(response.data.message)
 			}
 		}	
 		catch(error){
-			console.log("error in deleting messages")
-			toast.error(error.message)
+			console.log("error in deleting messages",error)
+			toast.error("Messages not found")
 		}
 	}
 

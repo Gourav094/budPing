@@ -4,12 +4,15 @@ import toast from "react-hot-toast"
 import axios from "axios"
 import {  addNewMessage } from "../redux/conversationSlice";
 import { useSocket } from "../context/SocketContext";
+import useGetActiveConversation from "./useGetActiveConversation";
 
 const useSendMessage = () => {
     const selectedConversation = useSelector(state => state.conversation.selectedConversation)
     const dispatch = useDispatch()
     const [loading,setLoading] = useState(false)
     const { socket } = useSocket();
+    
+    const {addNewConversation} = useGetActiveConversation()
 
     const sendMessage = async(message) => {
         setLoading(true)
@@ -28,6 +31,7 @@ const useSendMessage = () => {
             socket.emit("new message",sendData)
             if(response.data){
                 dispatch(addNewMessage(response?.data?.message))
+                addNewConversation(selectedConversation)
             }
         }
         catch(error){

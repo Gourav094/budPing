@@ -2,7 +2,6 @@ import { IoSearchOutline } from "react-icons/io5";
 import useGetConversation from "../utils/useGetConversation";
 import Conversation from "./Conversation";
 import { useSelector} from "react-redux"
-import useGetActiveConversation from "../utils/useGetActiveConversation";
 import { useEffect, useRef, useState } from "react";
 import AllConversation from "./AllConversation";
 import { RxCross2 } from "react-icons/rx";
@@ -10,8 +9,7 @@ const SideBar = () => {
     const theme = useSelector(state => state.user.theme)
     const [showAllUsers,setShowAllUsers] = useState(false)
     const [searchQuery,setSearchQuery] = useState('') 
-
-    const {loading,conversation} = useGetActiveConversation()
+    
     const {load,allConversation} = useGetConversation()
 
     const containerRef = useRef(null);
@@ -50,7 +48,7 @@ const SideBar = () => {
         )}
 
         <div className="h-screen flex-1">
-            <Conversation conversation = {conversation} loading = {loading} searchQuery= {searchQuery}/>
+            <Conversation searchQuery= {searchQuery}/>
         </div>
     </div>
   )

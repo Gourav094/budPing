@@ -1,24 +1,26 @@
 import {useDispatch, useSelector} from "react-redux"
 import { selectConversation } from "../redux/conversationSlice";
 import {ConversationShimmer} from "./Shimmer";import { useEffect, useState } from "react";
+import useGetActiveConversation from "../utils/useGetActiveConversation";
 
-const Conversation = ({ loading,conversation,searchQuery}) => {
+const Conversation = ({ searchQuery}) => {
 	const dispatch = useDispatch()
-	const selectedConversation = useSelector(state => state.conversation?.selectedConversation);
+	const {loading} = useGetActiveConversation()
+
+	const {selectedConversation,activeConversation} = useSelector(state => state.conversation);
 	const [filteredConversation,setFilteredConversation] = useState([])
 	
 	useEffect(() => {
-
 		if(searchQuery){
-			const filter = conversation.filter((user) => {
+			const filter = activeConversation.filter((user) => {
 				return user.fullName.toLowerCase().includes(searchQuery.toLowerCase());
 			})
 			setFilteredConversation(filter)
 		}
 		else{
-			setFilteredConversation(conversation)
+			setFilteredConversation(activeConversation)
 		}
-	},[searchQuery,conversation])
+	},[searchQuery,activeConversation])
 
 	return loading ? (
 			<ConversationShimmer/>

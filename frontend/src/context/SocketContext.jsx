@@ -14,12 +14,20 @@ export const SocketProvider = ({ children }) => {
 	useEffect(() => {
 		if (userData) {
 			socket.emit("setup", userData);
-			socket.on("connected", () => {
+			const handleConnected = () => {
 				setSocketConnected(true);
-			});
-			socket.on("disconnect", () => {
-				setSocketConnected(false); 
-			});
+			};
+			const handleDisconnect = () => {
+				setSocketConnected(false);
+			};
+	
+			socket.on("connected", handleConnected);
+			socket.on("disconnect", handleDisconnect);
+	
+			return () => {
+				socket.off("connected", handleConnected);
+				socket.off("disconnect", handleDisconnect);
+			};
 		}
 	}, [socket, userData]);
 
