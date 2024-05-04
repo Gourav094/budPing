@@ -8,7 +8,7 @@ const Conversation = ({ loading,conversation,searchQuery}) => {
 	const [filteredConversation,setFilteredConversation] = useState([])
 	
 	useEffect(() => {
-		console.log(searchQuery)
+
 		if(searchQuery){
 			const filter = conversation.filter((user) => {
 				return user.fullName.toLowerCase().includes(searchQuery.toLowerCase());

@@ -5,14 +5,16 @@ import SideMenu from './SideMenu';
 const Chat = () => {
 
   const theme = useSelector((state) => state.user.theme);
+  const selectedConversation = useSelector((state) => state.conversation.selectedConversation)
+  console.log(selectedConversation)
 
   return (
-    <div className='grid grid-cols-8 max-h-screen ' data-theme = {theme}>
-        <div className='col-span-2 border-r border-gray-400 flex'>
+    <div className='sm:grid sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 max-h-screen ' data-theme = {theme}>
+        <div className={`col-span-2 border-r border-gray-400 flex ${selectedConversation && "hidden"}`}>
             <SideMenu/>
             <SideBar/>
         </div>
-        <div className='col-span-6'>
+        <div className={`${selectedConversation ? "block" : "hidden"} sm:block sm:col-span-2 md:col-span-4 lg:col-span-6`}>
             <MessageContainer/>
         </div>
     </div>

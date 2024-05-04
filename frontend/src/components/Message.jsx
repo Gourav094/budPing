@@ -10,7 +10,6 @@ const Messages = ({message}) => {
   const bubbleBgColor = myMessage ? "bg-blue-500" : "";
   // const shakeClass = message.shouldShake ? "shake" : "";
   const profilePic = myMessage ? user?.fullName[0].toUpperCase() : selectedConversation?.fullName[0].toUpperCase()
-  console.log(selectedConversation)
   return (
     <div className='py-1'>
         <div className={`chat ${chatDirection}`}>
