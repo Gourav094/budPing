@@ -42,7 +42,25 @@ const useSendMessage = () => {
         }
 
     }
-    return {sendMessage,loading}
+
+    const sendFile = async(file) => {
+        try{
+            const formData = new FormData()
+            formData.append('file',file)
+            const response = await axios.post(`http://localhost:3000/message/file/${selectedConversation._id}`, formData , {
+                headers: {
+                    Authorization: JSON.parse(localStorage.getItem('token'))
+                }
+            });
+
+            console.log(response.data)
+        }
+        catch(err){
+            console.log("getting error in sending file",err)
+        }
+    }
+
+    return {sendMessage,sendFile,loading}
 
 };
 

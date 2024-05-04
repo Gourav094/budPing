@@ -60,6 +60,46 @@ async function addNewMessage(req,res){
     }
 }
 
+async function addNewFile(req,res){
+    const { id: receiverId } = req.params
+    const senderId = req.user._id
+    const file = req.file
+    console.log(req.file)
+    if (!file) {
+        return res.status(400).json({
+            error: "No file uploaded",
+        });
+    }
+    try {
+        let conversation = await Conversation.findOne({
+            participants: { $all: [senderId, receiverId] }
+        });
+
+        if (!conversation) {
+            conversation = await Conversation.create({
+                participants: [senderId, receiverId],
+            });
+        }
+        const newFileMessage = new Message({
+            senderId,
+            receiverId,
+            file: `/uploads/${file.filename}`,
+        });
+
+        conversation.messages.push(newFileMessage._id);
+        await Promise.all([conversation.save(), newFileMessage.save()]);
+
+        res.status(200).json({
+            message: newFileMessage,
+        });
+    } catch (err) {
+        console.log("Error occurred in sending file: ", err);
+        res.status(400).json({
+            error: "Internal server error",
+        });
+    }
+}
+
 async function deleteChat(req,res){
     const senderId = req.user.id
     const {id:receiverId} = req.params
@@ -95,5 +135,6 @@ async function deleteChat(req,res){
 module.exports = {
     getMessage,
     addNewMessage,
+    addNewFile,
     deleteChat
 }
