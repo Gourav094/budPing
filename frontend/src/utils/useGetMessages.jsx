@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import axios from "axios"
 import {clearMessages, setMessages} from "../redux/conversationSlice"
 import { useSocket } from '../context/SocketContext'
+import toast from 'react-hot-toast'
 
 const useGetMessages = () => {
     const [loading,setLoading] = useState(false)
@@ -31,6 +32,7 @@ const useGetMessages = () => {
                 socket.emit("join chat",selectedConversation._id)
             }catch(error){
                 console.log("getting error while fetching messages",error)
+                toast.error(error.message)
             }
             finally{
                 setLoading(false)

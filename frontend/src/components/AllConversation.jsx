@@ -5,10 +5,11 @@ import {ConversationShimmer} from "./Shimmer";
 const AllConversation = ({ load,allConversation, showAllUsers, setShowAllUsers}) => {
 	const dispatch = useDispatch()
 	const selectedConversation = useSelector(state => state.conversation?.selectedConversation);
-
+	
 	const handleSelectUser = (user) => {
-		setShowAllUsers(!showAllUsers)
+		console.log(user)
 		dispatch(selectConversation(user))
+		setShowAllUsers(!showAllUsers)
 	}
 
 	return load ? (

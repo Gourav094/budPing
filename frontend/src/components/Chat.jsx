@@ -10,7 +10,7 @@ const Chat = () => {
 
   return (
     <div className='sm:grid sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 max-h-screen ' data-theme = {theme}>
-        <div className={`col-span-2 border-r border-gray-400 flex ${selectedConversation && "hidden"}`}>
+        <div className={`col-span-2 border-r border-gray-400 flex ${selectedConversation && "hidden sm:flex"}`}>
             <SideMenu/>
             <SideBar/>
         </div>

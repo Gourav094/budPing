@@ -60,7 +60,40 @@ async function addNewMessage(req,res){
     }
 }
 
+async function deleteChat(req,res){
+    const senderId = req.user.id
+    const {id:receiverId} = req.params
+    try{
+        const conversation = await Conversation.findOne({
+            participants : {$all:[senderId,receiverId]}
+        }).populate("messages")
+    
+        if (!conversation) {
+            return res.status(404).json({ error: "conversation not found" });
+        }
+        if(!conversation.messages){
+            return res.status(200).json({message:"Messages are already deleted"})
+        }
+        const messageIds = conversation.messages.map(message => message._id);
+
+        for (const messageId of messageIds) {
+            await Message.findByIdAndDelete(messageId);
+        }
+
+        await Conversation.findByIdAndDelete(conversation._id);
+        
+        return res.status(200).json({message:"Chat deleted"});
+    }
+    catch(err){
+        console.log(err)
+        res.status(400).json({
+            error:"Internal server error"
+        })
+    }
+}
+
 module.exports = {
     getMessage,
-    addNewMessage
+    addNewMessage,
+    deleteChat
 }

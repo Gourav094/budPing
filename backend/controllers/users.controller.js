@@ -22,6 +22,7 @@ async function getAllActiveUsers(req,res){
             participants : loggedInUserId,
             messages: { $not: { $size: 0 } }
         })
+        
         const userIdsSet = new Set();
         for (const conversation of activeUsers) {
             for (const participant of conversation.participants) {
