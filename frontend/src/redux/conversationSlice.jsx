@@ -5,7 +5,8 @@ const conversationSlice = new createSlice({
     initialState:{
         selectedConversation:null,
         messages:[],
-        activeConversation:[]
+        activeConversation:[],
+        notifications:[]
     },
     reducers:{
         selectConversation: (state,action) => {
@@ -27,10 +28,15 @@ const conversationSlice = new createSlice({
         removeActiveConversation:(state,action) =>{
             state.activeConversation = state.activeConversation.filter(
                 (user) => user._id !== action.payload);
+        },
+        addNotification:(state,action) => {
+            if(!state.notifications.includes(action.payload)){
+                state.notifications.push(action.payload)
+            }
         }
     }
 })
 
-export const {selectConversation,addNewMessage,setMessages,clearMessages,addActiveConversation,removeActiveConversation} = conversationSlice.actions
+export const {selectConversation,addNewMessage,setMessages,clearMessages,addActiveConversation,removeActiveConversation,addNotification} = conversationSlice.actions
 
 export default conversationSlice.reducer

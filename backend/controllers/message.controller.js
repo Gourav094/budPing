@@ -20,6 +20,11 @@ async function getMessage(req,res){
     }
 }
 
+async function getFile(req,res){
+    const senderId = req.user._id
+    const {id: receiverId} = req.params
+}
+
 async function addNewMessage(req,res){
     const {id : receiverId} = req.params;
     const senderId = req.user._id;
@@ -134,6 +139,7 @@ async function deleteChat(req,res){
 
 module.exports = {
     getMessage,
+    getFile,
     addNewMessage,
     addNewFile,
     deleteChat

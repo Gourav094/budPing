@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Logo from "../assets/logo.png"
+import Logo from "../assets/favicon.png"
 import { IoLogOutOutline } from "react-icons/io5";
 import {useNavigate} from "react-router-dom"
 import axios from "axios"
@@ -37,7 +37,7 @@ const SideMenu = () => {
 	return (
 		<div className="w-14 flex flex-col items-center justify-between h-screen py-4" data-theme={theme === "dark" ? "dim" : "nord"}>
 			<div>
-				<img className="h-8" src={Logo} alt="logo"/>
+				<img className="h-12" src={Logo} alt="logo"/>
 			</div>
 			<div className="flex flex-col items-center gap-3">
                 <span className="text-2xl hover:text-blue-500 cursor-pointer" onClick={handleTheme}><MdOutlineColorLens /></span>

@@ -26,4 +26,4 @@ messageRouter.post("/file/:id",checkUserLogin,upload.single('file'),addNewFile)
 
 messageRouter.delete("/:id",checkUserLogin,deleteChat)
 
-module.exports = messageRouter;  
+module.exports = messageRouter;

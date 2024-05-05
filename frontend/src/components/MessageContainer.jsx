@@ -4,27 +4,35 @@ import { CaptalizeFirstLetter } from "../utils/constant";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 import { useEffect} from "react";
-import { addNewMessage} from "../redux/conversationSlice";
+import { addNewMessage, addNotification} from "../redux/conversationSlice";
 import { useSocket } from "../context/SocketContext";
 import MessageHeader from "./MessageHeader";
 
 const MessageContainer = () => {
 	const { socket, selectedChatCompare} = useSocket();
 
-	const selectedConversation = useSelector(
-		(state) => state.conversation?.selectedConversation
-	);
+	const {selectedConversation} = useSelector((state) => state.conversation);
 	const {userData} = useSelector((state) => state.user);
 	const dispatch = useDispatch()
 
 	useEffect(() => {
 		function handleMessageReceived(message){
-			if(!selectedChatCompare || selectedChatCompare._id !== message.receiverId){
-				console.log("dispatching....")
-				dispatch(addNewMessage(message))
+			console.log(selectedChatCompare, message)
+			// if(selectedChatCompare && selectedChatCompare?._id === message?.sender){
+			// 	console.log("dispatching....")
+			// 	dispatch(addNewMessage(message))
+			// }
+			// else{
+			// 	console.log("adding new message ",message)
+			// 	dispatch(addNotification(message))
+			// }
+			if(!selectedChatCompare || selectedChatCompare !== message.senderId){
+				dispatch(addNotification(message))
+				console.log("send notification")
 			}
 			else{
-				//give notificaiotn
+				dispatch(addNewMessage(message))
+				console.log("dispatchedd..")
 			}
 		}
 		socket.on("message received",handleMessageReceived)
