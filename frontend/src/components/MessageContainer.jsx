@@ -52,7 +52,7 @@ const MessageContainer = () => {
 			</span>
 		</div>
 	) : (
-		<div className="py-2 max-h-screen flex flex-col justify-between">
+		<div className="py-2 h-screen flex flex-col justify-between">
 			<MessageHeader/>
 
 			<Messages />

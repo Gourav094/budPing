@@ -1,11 +1,10 @@
-import { MdCancel } from "react-icons/md";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
 import {  clearMessages, removeActiveConversation, selectConversation } from "../redux/conversationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import axios from "axios";
-
+import { RxCross2 } from "react-icons/rx";
 const MessageHeader = () => {
     const [showDropDown,setShowDropDown] = useState(false)
 	const dropDownRef = useRef(null)
@@ -72,7 +71,7 @@ const MessageHeader = () => {
 				</div>
 				<div className="relative flex gap-2 pr-2">
 					<div className="text-lg cursor-pointer hover:text-blue-500" onClick={() => dispatch(selectConversation(null))}>
-						<MdCancel/>
+						<RxCross2/>
 					</div>
 
 					<div ref={dropDownRef} className="text-lg cursor-pointer hover:text-blue-500" onClick={() => setShowDropDown(!showDropDown)}>
