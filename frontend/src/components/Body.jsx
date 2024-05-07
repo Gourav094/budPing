@@ -8,6 +8,7 @@ import image1 from "../assets/image-bg1.png"
 import heroImage from "../assets/home_message.png"
 import heroImage2 from "../assets/home_message2.png"
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 const Body = () => {
 	return (
@@ -59,6 +60,7 @@ const Body = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
     </div>)
 };
 
