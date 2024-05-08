@@ -9,8 +9,7 @@ import { useSocket } from "../context/SocketContext";
 const MessageHeader = () => {
     const [showDropDown,setShowDropDown] = useState(false)
 	const dropDownRef = useRef(null)
-	const { setSelectedChatCompare} = useSocket();
-
+	const { onlineUsers, setSelectedChatCompare} = useSocket();
 
     const selectedConversation = useSelector(
 		(state) => state.conversation?.selectedConversation
@@ -32,7 +31,7 @@ const MessageHeader = () => {
 					Authorization:JSON.parse(localStorage.getItem('token'))
 				}
 			})
-			console.log(response)
+
 			if(response.data){
 				dispatch(clearMessages())
 				dispatch(removeActiveConversation(selectedConversation._id))
@@ -63,6 +62,10 @@ const MessageHeader = () => {
 		dispatch(selectConversation(null))
 		setSelectedChatCompare(null)
 	}	
+	
+	const userStatus = () => {
+		return onlineUsers?.includes(selectedConversation._id)
+	}
 
   return (
     <div className="py-2 px-4 rounded flex gap-4 items-center justify-between" data-theme={theme === "dark" ? "dim" : "nord"}>
@@ -75,7 +78,9 @@ const MessageHeader = () => {
 						<h3 className=" font-medium ">
 							{selectedConversation?.fullName}{" "}
 						</h3>
-						<p className="text-xs text-green-500">online</p>
+						{userStatus() ? 
+							(<p className="text-xs text-green-600">online</p>) :
+							(<p className="text-xs text-gray-500">offline</p>)}
 					</div>
 				</div>
 				<div className="relative flex gap-2 pr-2">

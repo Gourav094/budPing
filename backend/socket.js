@@ -13,13 +13,19 @@ const io = new Server(httpServer,{
     }
 })
 
-io.on("connection",(socket) => {
-    // console.log("A user connected",socket.id)
+const userSocketMap = {}
 
+io.on("connection",(socket) => {
+    console.log("A user connected",socket.id)
+    let userId
     socket.on("setup",(userData) => {
         socket.join(userData._id)   
         console.log("User joined room in itself",userData._id)
         socket.emit('connected')    
+        userId = userData._id
+        userSocketMap[userId] = socket.id
+        console.log("logging",userSocketMap)
+        io.emit('getonlineusers', Object.keys(userSocketMap));
     })
 
     socket.on("join chat",(room) => {
@@ -34,6 +40,11 @@ io.on("connection",(socket) => {
 
     socket.on("disconnect",() => {
         console.log("User is disconnected",socket.id)
+        if(userId){
+            delete userSocketMap[userId]
+            console.log("removed one user")
+            io.emit("online users", Object.keys(userSocketMap));
+        }
     })
 })
 

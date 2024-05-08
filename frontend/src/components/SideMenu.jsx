@@ -8,6 +8,7 @@ import toast from "react-hot-toast"
 import { MdOutlineColorLens } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
 import Notification from "./Notification";
+import { useSocket } from "../context/SocketContext";
 
 const SideMenu = () => {
     const NotificationRef = useRef(null)
@@ -16,7 +17,7 @@ const SideMenu = () => {
     const {theme,userData} = useSelector((state) => state.user);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
+    const {socket,setSocket} = useSocket()
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -51,6 +52,10 @@ const SideMenu = () => {
             localStorage.removeItem('token');
             dispatch(addUser(null))
             navigate("/")
+            if(socket){
+                socket.disconnect();
+                setSocket(null)
+            }
         }catch(error){
             console.log(error)
         }

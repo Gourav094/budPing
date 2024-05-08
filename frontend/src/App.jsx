@@ -6,7 +6,6 @@ import Chat from "./components/Chat";
 import { useSelector } from "react-redux";
 function App() {
   const user = useSelector(state => state.user.userData)
-  console.log(user)
 
 	return (
 		<BrowserRouter>

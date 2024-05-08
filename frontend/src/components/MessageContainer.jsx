@@ -17,14 +17,14 @@ const MessageContainer = () => {
 
 	useEffect(() => {
 		function handleMessageReceived(message){
-			console.log(selectedConversation,selectedChatCompare, message)
+			// console.log(selectedConversation,selectedChatCompare, message)
 			if(!selectedChatCompare || selectedChatCompare !== message.senderId){
 				dispatch(addNotification(message))
-				console.log("send notification")
+				// console.log("send notification")
 			}
 			else{
 				dispatch(addNewMessage(message))
-				console.log("dispatchedd..")
+				// console.log("dispatchedd..")
 			}
 		}
 		socket.on("message received",handleMessageReceived)

@@ -6,10 +6,15 @@ const SocketContext = createContext();
 export const useSocket = () => useContext(SocketContext);
 
 export const SocketProvider = ({ children }) => {
-	const socket = io("http://localhost:3000"); // Initialize sock      et
+	const [socket,setSocket] = useState()
 	const [selectedChatCompare, setSelectedChatCompare] = useState(null);
 	const [socketConnected, setSocketConnected] = useState(false);
 	const { userData } = useSelector((state) => state.user);
+	const [onlineUsers,setOnlineUsers] = useState([])
+
+	if (!socket) {
+        setSocket(io('http://localhost:3000'))
+    }
 
 	useEffect(() => {
 		if (userData) {
@@ -20,24 +25,32 @@ export const SocketProvider = ({ children }) => {
 			const handleDisconnect = () => {
 				setSocketConnected(false);
 			};
-	
+			const handleOnlineUsers = (users) => {
+				setOnlineUsers(users)
+			}
 			socket.on("connected", handleConnected);
+			
+			socket.on('getonlineusers',handleOnlineUsers)
+
 			socket.on("disconnect", handleDisconnect);
 	
 			return () => {
 				socket.off("connected", handleConnected);
 				socket.off("disconnect", handleDisconnect);
+				socket.off("getonlineusers",handleOnlineUsers)
 			};
 		}
-	}, [socket, userData]);
+	}, [userData]);
 
 	return (
 		<SocketContext.Provider
 			value={{
 				socket,
+				setSocket,
 				selectedChatCompare,
 				setSelectedChatCompare,
 				socketConnected,
+				onlineUsers
 			}}
 		>
 			{children}
