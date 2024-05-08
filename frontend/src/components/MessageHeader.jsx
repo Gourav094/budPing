@@ -70,7 +70,7 @@ const MessageHeader = () => {
   return (
     <div className="py-2 px-4 rounded flex gap-4 items-center justify-between" data-theme={theme === "dark" ? "dim" : "nord"}>
 				<div className="flex items-center gap-4">
-					<p className="h-8 w-8 text-white bg-green-500 rounded-full flex items-center justify-center">
+					<p className="h-8 w-8 text-white bg-blue-400 bg-opacity-90 rounded-full flex items-center justify-center">
 						{" "}
 						{selectedConversation?.fullName[0].toUpperCase()}{" "}
 					</p>

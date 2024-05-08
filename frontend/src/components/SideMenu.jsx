@@ -33,7 +33,6 @@ const SideMenu = () => {
           };
     },[showNotification])
 
-
     const handleTheme = async () => {
         if(theme === "dark"){
             dispatch(userTheme("light"))
@@ -76,26 +75,24 @@ const SideMenu = () => {
                             </span>
                         )}
                     </div>
+                    {
+                        showNotification && <div className="fixed inset-0 bg-black bg-opacity-80 z-50 p-4 max-h-screen overflow-auto">
+                            <h3 className="text-violet-100 text-xl font-medium text-center pl-10 fixed top-5">Notifications</h3>
+                            <div className=" rounded-lg shadow-lg max-w-sm mx-auto mt-12 p-2 flex-1" data-theme={theme !== 'dark' ? 'dim':'nord'}>
+                                    <Notification notifications={notifications}/>
+                            </div>
+                    </div>
+                    }
                 </div>
-                {
-                    showNotification && <div className="fixed inset-0 bg-black bg-opacity-80 z-50 p-4 max-h-screen overflow-auto">
-                        <h3 className="text-violet-100 text-xl font-medium text-center pl-10 fixed top-5">Notifications</h3>
-                        <div className=" rounded-lg shadow-lg max-w-sm mx-auto mt-12 p-2  flex-1" data-theme={theme !== 'dark' ? 'dim':'nord'}>
-                                <Notification notifications={notifications}/>
-                        </div>
-                  </div>
-                }
                 <span className="text-2xl hover:text-blue-500 cursor-pointer" onClick={handleTheme}><MdOutlineColorLens /></span>
                 <span className="text-2xl hover:text-blue-500 cursor-pointer" onClick={handleLogout}><IoLogOutOutline /></span>
-                <div>
+                <div onClick={() => toast.success(`Hello ${userData.fullName}`,{icon: '👏',})}>
                     <p className="h-8 w-8 text-white bg-blue-500 rounded-full flex items-center justify-center cursor-pointer" >
                         {userData?.fullName[0].toUpperCase()}
                     </p>
-                        
                 </div>
 			</div>
 		</div>
 	);
 };
-
 export default SideMenu;
