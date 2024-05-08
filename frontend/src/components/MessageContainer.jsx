@@ -17,15 +17,7 @@ const MessageContainer = () => {
 
 	useEffect(() => {
 		function handleMessageReceived(message){
-			console.log(selectedChatCompare, message)
-			// if(selectedChatCompare && selectedChatCompare?._id === message?.sender){
-			// 	console.log("dispatching....")
-			// 	dispatch(addNewMessage(message))
-			// }
-			// else{
-			// 	console.log("adding new message ",message)
-			// 	dispatch(addNotification(message))
-			// }
+			console.log(selectedConversation,selectedChatCompare, message)
 			if(!selectedChatCompare || selectedChatCompare !== message.senderId){
 				dispatch(addNotification(message))
 				console.log("send notification")

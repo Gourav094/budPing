@@ -14,6 +14,7 @@ const SideBar = () => {
 
     const containerRef = useRef(null);
     useEffect(() => {
+      
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
             setShowAllUsers(!setShowAllUsers);
@@ -40,7 +41,8 @@ const SideBar = () => {
         </div> }  
         {
             showAllUsers && (
-              <div className="fixed inset-0 bg-black bg-opacity-50 z-50 p-4 max-h-screen overflow-auto">
+              <div className="fixed inset-0 bg-black bg-opacity-80 z-50 p-4 max-h-screen overflow-auto">
+                <h3 className="text-violet-100 text-xl font-medium text-center pl-10 fixed top-5">All Users</h3>
                 <div className="bg- rounded-lg shadow-lg max-w-md mx-auto mt-12 p-2  flex-1" data-theme={theme !== 'dark' ? 'dim':'nord'}>
                   <AllConversation load = {load} allConversation={allConversation} showAllUsers = {showAllUsers} setShowAllUsers = {setShowAllUsers}/>
                 </div>

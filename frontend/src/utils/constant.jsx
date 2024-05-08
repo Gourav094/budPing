@@ -9,6 +9,11 @@ export function extractTime(dateString) {
 	return `${hours}:${minutes}`;
 }
 
+export function getUser(userId,allUsers){
+	const user = allUsers.find(user => user._id === userId);
+	return user ? user : null;
+}
+
 // Helper function to pad single-digit numbers with a leading zero
 function padZero(number) {
 	return number.toString().padStart(2, "0");

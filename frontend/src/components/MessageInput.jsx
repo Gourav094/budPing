@@ -17,7 +17,7 @@ const MessageInput = () => {
 
     const handleSubmit = async(e) => {
 		e.preventDefault()
-		console.log(file)
+
         if(inputMessage === "" && !file){
             return
         }        

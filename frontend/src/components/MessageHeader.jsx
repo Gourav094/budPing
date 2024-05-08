@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
+import { useSocket } from "../context/SocketContext";
 const MessageHeader = () => {
     const [showDropDown,setShowDropDown] = useState(false)
 	const dropDownRef = useRef(null)
+	const { setSelectedChatCompare} = useSocket();
+
 
     const selectedConversation = useSelector(
 		(state) => state.conversation?.selectedConversation
@@ -17,6 +20,7 @@ const MessageHeader = () => {
 	const dispatch = useDispatch()
 
 	const handleDeleteMessages = async () => {
+		
 		const confirmed = window.confirm("Are you sure you want to delete this chat? This action cannot be undone.");
 		if(!confirmed){
 			return
@@ -55,6 +59,11 @@ const MessageHeader = () => {
 		};
 	}, [showDropDown]);
 
+	const handleChatCross = () => {
+		dispatch(selectConversation(null))
+		setSelectedChatCompare(null)
+	}	
+
   return (
     <div className="py-2 px-4 rounded flex gap-4 items-center justify-between" data-theme={theme === "dark" ? "dim" : "nord"}>
 				<div className="flex items-center gap-4">
@@ -70,7 +79,7 @@ const MessageHeader = () => {
 					</div>
 				</div>
 				<div className="relative flex gap-2 pr-2">
-					<div className="text-lg cursor-pointer hover:text-blue-500" onClick={() => dispatch(selectConversation(null))}>
+					<div className="text-lg cursor-pointer hover:text-blue-500" onClick={handleChatCross}>
 						<RxCross2/>
 					</div>
 
