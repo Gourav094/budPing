@@ -7,6 +7,7 @@ import { useEffect} from "react";
 import { addNewMessage, addNotification} from "../redux/conversationSlice";
 import { useSocket } from "../context/SocketContext";
 import MessageHeader from "./MessageHeader";
+import notificaitonSound from "../assets/sound/notification.mp3"
 
 const MessageContainer = () => {
 	const { socket, selectedChatCompare} = useSocket();
@@ -19,6 +20,8 @@ const MessageContainer = () => {
 		function handleMessageReceived(message){
 			// console.log(selectedConversation,selectedChatCompare, message)
 			if(!selectedChatCompare || selectedChatCompare !== message.senderId){
+				const sound = new Audio(notificaitonSound)
+				sound.play()
 				dispatch(addNotification(message))
 				// console.log("send notification")
 			}

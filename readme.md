@@ -7,7 +7,7 @@ This is a real-time chat application built using the MERN stack. It allows users
 - Home Page
 - Chat Page
 - Real-Time Messages
-- Real-Time Notifications
+- Real-Time Notifications with sound
 - Dark and Light Theme
 - Send File
 - Authentication and Logout

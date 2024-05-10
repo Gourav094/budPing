@@ -9,7 +9,6 @@ const Notification = ({notifications}) => {
 
     const handleMessageClick = (senderId) => {
         const user = getUser(senderId,allUsers)
-        console.log(user)
         dispatch(selectConversation(user))
         dispatch(removeNotification(senderId))
     }

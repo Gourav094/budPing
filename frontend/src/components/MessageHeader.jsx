@@ -84,11 +84,11 @@ const MessageHeader = () => {
 					</div>
 				</div>
 				<div className="relative flex gap-2 pr-2">
-					<div className="text-lg cursor-pointer hover:text-blue-500" onClick={handleChatCross}>
+					<div className="text-lg cursor-pointer hover:opacity-60" onClick={handleChatCross}>
 						<RxCross2/>
 					</div>
 
-					<div ref={dropDownRef} className="text-lg cursor-pointer hover:text-blue-500" onClick={() => setShowDropDown(!showDropDown)}>
+					<div ref={dropDownRef} className="text-lg cursor-pointer hover:opacity-60" onClick={() => setShowDropDown(!showDropDown)}>
 						<HiOutlineDotsVertical />
 					</div>
 

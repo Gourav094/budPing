@@ -53,7 +53,7 @@ const useSendMessage = () => {
                 }
             });
 
-            console.log(response.data)
+            // console.log(response.data)
         }
         catch(err){
             console.log("getting error in sending file",err)

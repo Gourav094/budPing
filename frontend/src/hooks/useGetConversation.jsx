@@ -11,7 +11,6 @@ const useGetConversation = () => {
 	const {socket} = useSocket()
 
 	const getAllConversation = async() => {
-		console.log("calling users")
 		setLoad(true);
 		try {
 			const response =await axios.get("/users",{
@@ -37,6 +36,13 @@ const useGetConversation = () => {
         getAllConversation()
 	}, []);
 	
+	useEffect(() => {
+		if(socket){
+			socket.on("user added",() => {
+				getAllConversation()
+			})
+		}
+	})
 
 	return {load,allConversation};
 };

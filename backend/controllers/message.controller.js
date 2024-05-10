@@ -69,7 +69,7 @@ async function addNewFile(req,res){
     const { id: receiverId } = req.params
     const senderId = req.user._id
     const file = req.file
-    console.log(req.file)
+    // console.log(req.file)
     if (!file) {
         return res.status(400).json({
             error: "No file uploaded",
@@ -81,7 +81,7 @@ async function addNewFile(req,res){
         });
 
         if (!conversation) {
-            conversation = await Conversation.create({
+            conversationtan = await Conversation.create({
                 participants: [senderId, receiverId],
             });
         }

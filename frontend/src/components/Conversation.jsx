@@ -21,10 +21,12 @@ const Conversation = ({ searchQuery}) => {
 			setFilteredConversation(activeConversation)
 		}
 	},[searchQuery,activeConversation])
-
+	
 	return loading ? (
 			<ConversationShimmer/>
-	) : (
+	) : ( filteredConversation?.length === 0 ? (
+		<div className="text-center text-medium tracking-wider">Click + to add users</div>
+	):(
 		filteredConversation && filteredConversation.map((user) => (
 			<div key={user._id} onClick={() => dispatch(selectConversation(user))}>
 				<div className={`p-2 flex items-center gap-4 hover:bg-gray-400 hover:bg-opacity-10  cursor-pointer ${selectedConversation?._id === user._id && "bg-gray-400 bg-opacity-15 "}`}>
@@ -37,7 +39,7 @@ const Conversation = ({ searchQuery}) => {
 					</div>
 				</div>
 			</div>
-		))
+		)))
 	);
 };
 

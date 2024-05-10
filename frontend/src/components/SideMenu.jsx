@@ -59,7 +59,6 @@ const SideMenu = () => {
             console.log(error)
         }
     }
-
 	return (
 		<div className="w-14 flex flex-col items-center justify-between h-screen py-4" data-theme={theme === "dark" ? "dim" : "nord"}>
 			<div>
@@ -68,10 +67,10 @@ const SideMenu = () => {
 			<div className="flex flex-col items-center gap-3">
             <div>
                 <div className="relative inline-block cursor-pointer" onClick={() => setShowNotication(!showNotification)}>
-                    <span ref = {NotificationRef} className="text-3xl hover:text-blue-500 "><IoNotificationsOutline /></span>
+                    <span ref = {NotificationRef} className="text-2xl hover:opacity-60"><IoNotificationsOutline /></span>
                         {notifications.length > 0 && (
-                            <span className="badge absolute top-0 right-0 text-xs bg-red-600 text-white p-1">    
-                                {notifications.length}
+                            <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-700 text-white p-1">    
+                                
                             </span>
                         )}
                     </div>
@@ -84,8 +83,8 @@ const SideMenu = () => {
                     </div>
                     }
                 </div>
-                <span className="text-2xl hover:text-blue-500 cursor-pointer" onClick={handleTheme}><MdOutlineColorLens /></span>
-                <span className="text-2xl hover:text-blue-500 cursor-pointer" onClick={handleLogout}><IoLogOutOutline /></span>
+                <span className="text-2xl hover:opacity-60 cursor-pointer" onClick={handleTheme}><MdOutlineColorLens /></span>
+                <span className="text-2xl hover:opacity-60 cursor-pointer" onClick={handleLogout}><IoLogOutOutline /></span>
                 <div onClick={() => toast.success(`Hello ${userData.fullName}`,{icon: '👏',})}>
                     <p className="h-8 w-8 text-white bg-blue-500 rounded-full flex items-center justify-center cursor-pointer" >
                         {userData?.fullName[0].toUpperCase()}

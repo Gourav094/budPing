@@ -5,9 +5,11 @@ import axios from "axios";
 import {toast} from "react-hot-toast"
 import Loader from "./Loader"
 import LOGIN_BACKGROUND from "../assets/login-background.png"
+import { useSocket } from "../context/SocketContext";
 const Signup = () => {
 	const [showPassword,setShowPassword] = useState(true)
 	const [loading, setLoading] = useState(false);
+	const {socket} = useSocket()
 	const [formData, setFormData] = useState({
 		fullName: "",
 		email: "",
@@ -23,9 +25,8 @@ const Signup = () => {
 			[name]: value,
 		}));
 	};
-
 	const handleSubmit = async (e) => {
-        setLoading(true)
+		setLoading(true)
 		e.preventDefault();
 		try{
             const response = await axios.post(
@@ -36,6 +37,7 @@ const Signup = () => {
                 toast.success("Successfully created account")
                 navigate("/login")
             }
+			socket.emit("new user")
         }
         catch(error){
             console.log("Getting error in signup",error)
@@ -47,7 +49,6 @@ const Signup = () => {
             setLoading(false)
         }
 	};
-
 	return (
 		<div className="relative min-h-screen">
         <div className="absolute inset-0 -z-1 ">
