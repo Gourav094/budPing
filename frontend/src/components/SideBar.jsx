@@ -1,5 +1,5 @@
 import { IoSearchOutline } from "react-icons/io5";
-import useGetConversation from "../utils/useGetConversation";
+import useGetConversation from "../hooks/useGetConversation";
 import Conversation from "./Conversation";
 import { useSelector} from "react-redux"
 import { useEffect, useRef, useState } from "react";

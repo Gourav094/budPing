@@ -1,7 +1,7 @@
 import  { useState } from "react";
 import { MdOutlineAttachFile } from "react-icons/md";
 import Loader from "./Loader"
-import useSendMessage from "../utils/useSendMessage";
+import useSendMessage from "../hooks/useSendMessage";
 import { IoSend } from "react-icons/io5";
 
 

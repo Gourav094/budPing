@@ -11,7 +11,7 @@ const useGetActiveConversation = () => {
 	const getConversation = async() => {
 		setLoading(true);
 		try {
-			const response =await axios.get("http://localhost:3000/users/active",{
+			const response =await axios.get("/users/active",{
 				withCredentials:true,
 				headers:{
 					Authorization:JSON.parse(localStorage.getItem('token'))

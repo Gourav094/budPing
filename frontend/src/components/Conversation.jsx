@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux"
 import { selectConversation } from "../redux/conversationSlice";
 import {ConversationShimmer} from "./Shimmer";import { useEffect, useState } from "react";
-import useGetActiveConversation from "../utils/useGetActiveConversation";
+import useGetActiveConversation from "../hooks/useGetActiveConversation";
 
 const Conversation = ({ searchQuery}) => {
 	const dispatch = useDispatch()

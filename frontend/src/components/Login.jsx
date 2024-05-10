@@ -32,7 +32,7 @@ const Login = () => {
 		e.preventDefault();
 		try{
             const response = await axios.post(
-                "http://localhost:3000/user/login",
+                "/user/login",
                 formData
             );
             if(response.data){

@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const messageRouter = require('./routes/message.route')
 const cors = require("cors")
 const userRouter = require('./routes/users.router')
-
+const path = require('path')
 
 require('dotenv').config()
 
@@ -18,7 +18,7 @@ app.use(cors({
     methods:['GET','POST','PUT','DELETE']
 }))
 
-mongoose.connect('mongodb://127.0.0.1:27017/chat')
+mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log('database connected'))
 
 app.use(express.json())
@@ -32,6 +32,15 @@ app.use('/user',authRouter)
 app.use('/message',messageRouter)
 
 app.use('/users',userRouter)
+
+
+app.use(express.static(path.join(__dirname,'..','frontend','dist')))
+
+app.get('*',(req,res) => {
+    res.sendFile(path.join(__dirname,'..','frontend','dist','index.html'))
+})
+// if(process.env.env === 'production'){
+// }
 
 httpServer.listen(PORT,() => {
     console.log(`server running on http://localhost:${PORT}`)

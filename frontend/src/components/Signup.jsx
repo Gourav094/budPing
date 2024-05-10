@@ -29,7 +29,7 @@ const Signup = () => {
 		e.preventDefault();
 		try{
             const response = await axios.post(
-                "http://localhost:3000/user/signup",
+                "/user/signup",
                 formData
             );
             if(response.data){

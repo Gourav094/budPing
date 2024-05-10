@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import useGetMessages from "../utils/useGetMessages";
+import useGetMessages from "../hooks/useGetMessages";
 import Message from "./Message";
 import MessageShimmer from "./Shimmer";
 

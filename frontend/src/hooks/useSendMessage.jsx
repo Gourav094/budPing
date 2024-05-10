@@ -17,7 +17,7 @@ const useSendMessage = () => {
     const sendMessage = async(message) => {
         setLoading(true)
         try{
-            const response = await axios.post(`http://localhost:3000/message/${selectedConversation._id}`, {
+            const response = await axios.post(`/message/${selectedConversation._id}`, {
                 message: message 
             }, {
                 headers: {
@@ -47,7 +47,7 @@ const useSendMessage = () => {
         try{
             const formData = new FormData()
             formData.append('file',file)
-            const response = await axios.post(`http://localhost:3000/message/file/${selectedConversation._id}`, formData , {
+            const response = await axios.post(`/message/file/${selectedConversation._id}`, formData , {
                 headers: {
                     Authorization: JSON.parse(localStorage.getItem('token'))
                 }

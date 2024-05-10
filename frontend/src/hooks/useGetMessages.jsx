@@ -15,7 +15,7 @@ const useGetMessages = () => {
             try{
                 setLoading(true)
                 const response = await axios.get(
-                    `http://localhost:3000/message/${selectedConversation._id}`,
+                    `/message/${selectedConversation._id}`,
                     {
                         headers: {
                             Authorization: JSON.parse(

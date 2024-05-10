@@ -25,7 +25,7 @@ const MessageHeader = () => {
 			return
 		}
 		try{
-			const response = await axios.delete(`http://localhost:3000/message/${selectedConversation._id}`,{
+			const response = await axios.delete(`/message/${selectedConversation._id}`,{
 				withCredentials:true,
 				headers:{
 					Authorization:JSON.parse(localStorage.getItem('token'))

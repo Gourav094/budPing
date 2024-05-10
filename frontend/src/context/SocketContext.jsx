@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import io from "socket.io-client";
+import { BASEURL } from "../utils/constant";
 
 const SocketContext = createContext();
 export const useSocket = () => useContext(SocketContext);
@@ -13,7 +14,7 @@ export const SocketProvider = ({ children }) => {
 	const [onlineUsers,setOnlineUsers] = useState([])
 
 	if (!socket) {
-        setSocket(io('http://localhost:3000'))
+        setSocket(io(`${BASEURL}`))
     }
 
 	useEffect(() => {
